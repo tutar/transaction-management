@@ -1,0 +1,9 @@
+# Test configuration for load tests
+spring:
+  application:
+    name: transaction-management-test
+  main:
+    allow-bean-definition-overriding: true
+
+test:
+  profile: load-test

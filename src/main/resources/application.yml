@@ -1,0 +1,48 @@
+# Enable debug logging
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.example: DEBUG
+
+# Server configuration
+server:
+  port: 8080
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 20
+
+# Cache configuration
+spring:
+  cache:
+    type: caffeine
+    cache-names: transactions
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=60s,recordStats
+
+# Monitoring and Actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Swagger configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+  api-docs:
+    enabled: true

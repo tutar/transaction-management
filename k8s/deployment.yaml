@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-management
+  labels:
+    app: transaction-management
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: transaction-management
+  template:
+    metadata:
+      labels:
+        app: transaction-management
+    spec:
+      containers:
+      - name: transaction-management
+        image: transaction-management:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transaction-management
+  labels:
+    app: transaction-management
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: transaction-management

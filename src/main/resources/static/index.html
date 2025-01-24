@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交易管理系统</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>交易管理系统</h1>
+        
+        <!-- 交易列表 -->
+        <div class="transaction-list">
+            <div class="list-header">
+                <h2>交易列表</h2>
+                <button id="addTransactionBtn" class="add-btn">添加交易</button>
+            </div>
+            
+            <!-- 遮罩层 -->
+            <div id="overlay" class="overlay" style="display: none;"></div>
+
+            <!-- 添加/编辑表单 -->
+            <div class="transaction-form modal" style="display: none;">
+                <h2 id="formTitle">添加交易</h2>
+                <form id="transactionForm">
+                    <input type="hidden" id="transactionId">
+                    
+                    <div class="form-group">
+                        <label for="type">类型:</label>
+                        <select id="type" required>
+                            <option value="">请选择</option>
+                            <option value="FEE_INCOME">费用收入</option>
+                            <option value="INTEREST_INCOME">利息收入</option>
+                            <option value="DEPOSIT">存款</option>
+                            <option value="REFUND">退款</option>
+                            <option value="FEE_EXPENSE">费用支出</option>
+                            <option value="INTEREST_EXPENSE">利息支出</option>
+                            <option value="WITHDRAWAL">取款</option>
+                            <option value="TRANSFER">转账</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">金额:</label>
+                        <input type="number" id="amount" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">状态:</label>
+                        <select id="status" required>
+                            <option value="">请选择</option>
+                            <option value="PENDING">待处理</option>
+                            <option value="COMPLETED">已完成</option>
+                            <option value="CANCELLED">已取消</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submitBtn">提交</button>
+                    <button type="button" id="cancelBtn">取消</button>
+                </form>
+            </div>
+
+            <table id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>类型</th>
+                        <th>金额</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 动态加载数据 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
