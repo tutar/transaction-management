@@ -11,6 +11,7 @@ server:
   tomcat:
     max-threads: 200
     min-spare-threads: 20
+    accept-count: 131072
 
 # Cache configuration
 spring:

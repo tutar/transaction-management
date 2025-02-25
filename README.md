@@ -43,6 +43,8 @@ mvn test -Dtest=TransactionControllerLoadTest
 # Run JMeter load test
 jmeter -n -t src/test/resources/jmeter/TransactionLoadTest.jmx -l results.jtl
 jmeter -g results.jtl -o report
+
+jmeter -n -t src/test/resources/jmeter/LoadTest.jmx -l results.jtl
 ```
 
 ## Containerization

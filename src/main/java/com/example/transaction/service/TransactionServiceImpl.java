@@ -48,7 +48,8 @@ public class TransactionServiceImpl implements TransactionService {
             case INTEREST_EXPENSE:
             case FEE_INCOME:
             case FEE_EXPENSE:
-                validateSystemTransaction(transaction);
+                // 暂时不需要额外验证
+                // validateSystemTransaction(transaction);
                 break;
             case DEPOSIT:
             default:

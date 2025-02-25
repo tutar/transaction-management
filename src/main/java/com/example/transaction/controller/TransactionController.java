@@ -25,14 +25,14 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new transaction")
     public Transaction createTransaction(@Valid @RequestBody Transaction transaction) {
         return transactionService.createTransaction(transaction);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}",produces = "application/json")
     @Operation(summary = "Get transaction by ID")
     public Transaction getTransactionById(@PathVariable Long id) {
         return transactionService.getTransactionById(id)
